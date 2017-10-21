@@ -11,6 +11,12 @@ import Alamofire
 
 class ViewController: UIViewController {
 
+    //outlets
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var interest: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,25 +30,31 @@ class ViewController: UIViewController {
         signUp()
     }
     
-    
-    
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
 //        // Dispose of any resources that can be recreated.
 //    }
         //func
     func login(){
-        Alamofire.request("https://httpbin.org/get").responseJSON { response in
+        let parameters: Parameters = [
+                "email": email.text,
+                "password": password.text
+        ]
+        
+        Alamofire.request("https://awquaint-server.herokuapp.com/sessions", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
             
-            if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
-            }
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
+            if response.response?.statusCode == 200 {
+                if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+                    self.present(viewController, animated: true, completion: nil)
+                }
+            } else {
+                // alert user
+                let alert = UIAlertController(title: "Incorrect password", message: "Incorrect password", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -50,9 +62,10 @@ class ViewController: UIViewController {
     func signUp(){
         let parameters: Parameters = [
             "user":[
-                "name":"bob",
-                "email":"lilbobby@bobby.com"
-//                "password":"hiya"
+                "name": name.text,
+                "email": email.text,
+                "password": password.text,
+                "interest": interest.text
             ]
         ]
         
@@ -63,15 +76,17 @@ class ViewController: UIViewController {
             
             // if response.result == SUCCESS
             if response.response?.statusCode == 200 {
+                 // move to next view
                 if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
                     self.present(viewController, animated: true, completion: nil)
                 }
             } else {
+                // alert user
                 let alert = UIAlertController(title: "incorrect password", message: "Incorrect password", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            // move to next view
+           
         }
     }
 
