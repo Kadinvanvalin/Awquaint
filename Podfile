@@ -7,8 +7,9 @@ target 'Awquaint' do
 
   # Pods for Awquaint
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'Alamofire', '~> 4.5'
+  pod 'Quick/Nimble'
+  pod 'Quick/Quick'
 
   target 'AwquaintTests' do
     inherit! :search_paths
