@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0929D9F01F9BB5B100CF6ECC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0929D9EF1F9BB5B100CF6ECC /* ProfileViewController.swift */; };
+		0939114C1F9C18D200EF7969 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0939114B1F9C18D200EF7969 /* SearchViewController.swift */; };
+		0939114E1F9C23E800EF7969 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0939114D1F9C23E800EF7969 /* SearchTableViewController.swift */; };
 		09DFAB311F9A325D00E1A807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB301F9A325D00E1A807 /* AppDelegate.swift */; };
 		09DFAB331F9A325D00E1A807 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB321F9A325D00E1A807 /* ViewController.swift */; };
 		09DFAB361F9A325D00E1A807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09DFAB341F9A325D00E1A807 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		0929D9EF1F9BB5B100CF6ECC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0939114B1F9C18D200EF7969 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0939114D1F9C23E800EF7969 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		09DFAB2D1F9A325D00E1A807 /* Awquaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awquaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09DFAB301F9A325D00E1A807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09DFAB321F9A325D00E1A807 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				09DFAB391F9A325D00E1A807 /* LaunchScreen.storyboard */,
 				09DFAB3C1F9A325D00E1A807 /* Info.plist */,
 				0929D9EF1F9BB5B100CF6ECC /* ProfileViewController.swift */,
+				0939114B1F9C18D200EF7969 /* SearchViewController.swift */,
+				0939114D1F9C23E800EF7969 /* SearchTableViewController.swift */,
 			);
 			path = Awquaint;
 			sourceTree = "<group>";
@@ -352,16 +358,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Awquaint/Pods-Awquaint-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -473,6 +475,8 @@
 			files = (
 				0929D9F01F9BB5B100CF6ECC /* ProfileViewController.swift in Sources */,
 				09DFAB331F9A325D00E1A807 /* ViewController.swift in Sources */,
+				0939114E1F9C23E800EF7969 /* SearchTableViewController.swift in Sources */,
+				0939114C1F9C18D200EF7969 /* SearchViewController.swift in Sources */,
 				09DFAB311F9A325D00E1A807 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

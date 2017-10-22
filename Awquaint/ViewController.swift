@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
@@ -48,7 +49,19 @@ class ViewController: UIViewController {
             
             if response.response?.statusCode == 200 {
                 if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+                 
+                         let json = JSON(response.result.value)
+                    
+                        viewController.namePassed = json["name"].stringValue
+                        viewController.idPassed = json["id"].stringValue
+                    
+                    
+                        print(json["name"])
+                        print(json["id"])
+                        
                     self.present(viewController, animated: true, completion: nil)
+//                    self.navigationController?.pushViewController(viewController, animated: true)
+
                 }
             } else {
                 // alert user

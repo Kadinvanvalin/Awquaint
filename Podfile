@@ -6,10 +6,10 @@ target 'Awquaint' do
   use_frameworks!
 
   # Pods for Awquaint
-
+  pod 'SwiftyJSON'
   pod 'Alamofire', '~> 4.5'
-  pod 'Quick/Nimble'
-  pod 'Quick/Quick'
+#  pod 'Quick/Nimble'
+#  pod 'Quick/Quick'
 
   target 'AwquaintTests' do
     inherit! :search_paths
