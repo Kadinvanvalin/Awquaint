@@ -25,7 +25,10 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameLabel.text = namePassed
+        let userDefaults = UserDefaults.standard
         
+        userDefaults.set(idPassed, forKey: "id")
+//        UserDefaults.standard.synchronize()
     
     }
     

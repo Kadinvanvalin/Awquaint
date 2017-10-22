@@ -46,3 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    func configureInitialRootViewController(for window: UIWindow?) {
+        let defaults = UserDefaults.standard
+        
+        let initialViewController: UIViewController
+        let userId = defaults.object(forKey: "id")
+        if userId != nil {
+            
+        }
+    }
+}
