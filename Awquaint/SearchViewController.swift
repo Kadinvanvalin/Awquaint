@@ -10,8 +10,8 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let list = ["javascript", "pb & j", "la croix"]
-    
-    
+    let name = ["kadin", "sqiuggles", "hermione"]
+    var customButton: UIButton!
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -22,10 +22,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-//        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = list[indexPath.row]
-        print(list[indexPath.row])
+        
+        //button
+        let btn = UIButton(frame: CGRect(x: 100, y: 400, width: 100, height: 50))
+        btn.titleLabel?.text = name[indexPath.row]
+//        btn.backgroundColor = .green()
+//        btn.setTitle("Click Me", forState: .Normal)
+//        btn.addTarget(self, action: #selector(MyClass.buttonAction), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn)
+        customButton = btn
+        
+        
+        
         return(cell)
     }
     
