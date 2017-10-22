@@ -60,8 +60,6 @@ class ViewController: UIViewController {
                         print(json["id"])
                         
                     self.present(viewController, animated: true, completion: nil)
-//                    self.navigationController?.pushViewController(viewController, animated: true)
-
                 }
             } else {
                 // alert user
