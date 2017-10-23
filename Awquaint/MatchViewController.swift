@@ -13,9 +13,14 @@ class MatchViewController: UIViewController {
     var matchName = ""
     var matchInterest = ""
 
+    @IBOutlet weak var connectionNameLabel: UILabel!
+    @IBOutlet weak var connectionInterestLabel: UILabel!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        self.connectionNameLabel.text = matchName
+        self.connectionInterestLabel.text = matchInterest
         // Do any additional setup after loading the view.
     }
 

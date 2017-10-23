@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class PendingRequestViewController: UIViewController {
 
-    var idPassed = ""
+ 
     var inviterIdPassed = ""
     var interestPassed = ""
     
@@ -32,6 +32,9 @@ class PendingRequestViewController: UIViewController {
         accept()
     }
     
+    @IBAction func declineButton(_ sender: Any) {
+        decline()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,8 +44,8 @@ class PendingRequestViewController: UIViewController {
 
     func accept(){
         let parameters: Parameters = [
-            "sender_id": "1",
-            "current_user_id": "3",
+            "sender_id": inviterIdPassed,
+            "current_user_id": UserDefaults.standard.integer(forKey: "id"),
             "response": "accepted"
         ]
         
@@ -57,7 +60,26 @@ class PendingRequestViewController: UIViewController {
                     pendingRequestViewController.matchName = json["name"].stringValue
                     pendingRequestViewController.matchInterest = json["interest"].stringValue
                     self.present(pendingRequestViewController, animated: true, completion: nil)
-                print(json)
+                }
+            }
+        }
+    }
+    
+    func decline(){
+        let parameters: Parameters = [
+            "sender_id": inviterIdPassed,
+            "current_user_id": UserDefaults.standard.integer(forKey: "id"),
+            "response": "declined"
+        ]
+        
+        Alamofire.request("https://awquaint-server.herokuapp.com/invitations/response", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            
+            if response.response?.statusCode == 418 {
+                if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+                    self.present(profileViewController, animated: true, completion: nil)
                 }
             }
         }

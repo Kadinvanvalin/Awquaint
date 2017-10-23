@@ -69,6 +69,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+        func invitationStatus(){
+            let parameters: Parameters = [
+                "current_user_id": UserDefaults.standard.integer(forKey: "id"),
+            ]
+            
+        }
     
 //
 //    override func viewDidLoad() {
