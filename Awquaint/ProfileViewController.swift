@@ -39,11 +39,13 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            
         }
     }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]){
+        print("did update location")
         if let location = locations.first {
             let parameters: Parameters = [
                 "latitude": (location.coordinate.latitude),
@@ -51,6 +53,7 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
                 "id": idPassed
             ]
             nearbyRequest(parameters: parameters)
+        
         }
         
     }
@@ -68,19 +71,19 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
                         print(usersJson)
                     var idList = [String]()
                     var interestList = [String]()
-                    
-                    for i in 0...(usersJson.count - 1) {
-                        if let id = usersJson[i]["id"].string {
-                            idList.append(id)
+                        if usersJson.count > 0 {
+                        for i in 0...(usersJson.count - 1) {
+                            if let id = usersJson[i]["id"].string {
+                                idList.append(id)
+                            }
+                        }
+                        
+                        for i in 0...(usersJson.count - 1) {
+                            if let interest = (usersJson[i]["interest"]).string {
+                                interestList.append(interest)
+                            }
                         }
                     }
-                    
-                    for i in 0...(usersJson.count - 1) {
-                        if let interest = (usersJson[i]["interest"]).string {
-                            interestList.append(interest)
-                        }
-                    }
-                    
                     print(type(of:idList))
                     print(type(of:interestList))
                     

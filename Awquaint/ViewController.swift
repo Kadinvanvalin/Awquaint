@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     //outlets
     @IBOutlet weak var name: UITextField!
@@ -21,6 +21,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.name.delegate = self
+        self.email.delegate = self
+        self.password.delegate = self
+        self.interest.delegate = self
+    }
+    
+    // hide keyboard when users touches outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // when user presses return key, keyboard hides
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        name.resignFirstResponder()
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        interest.resignFirstResponder()
+        return true
     }
     
     //actions
@@ -54,7 +72,6 @@ class ViewController: UIViewController {
                     
                         viewController.namePassed = json["name"].stringValue
                         viewController.idPassed = json["id"].stringValue
-                    
                     
                        print(json["name"])
                        print(json["id"])

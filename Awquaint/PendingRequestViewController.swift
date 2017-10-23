@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class PendingRequestViewController: UIViewController {
 
- 
+    var idPassed = ""
     var inviterIdPassed = ""
     var interestPassed = ""
     
@@ -55,11 +55,14 @@ class PendingRequestViewController: UIViewController {
             print("Result: \(response.result)")                         // response serialization result
             
             if response.response?.statusCode == 200 {
-                if let pendingRequestViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "matchViewController") as? MatchViewController {
+                if let matchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "matchViewController") as? MatchViewController {
                     let json = JSON(response.result.value)
-                    pendingRequestViewController.matchName = json["name"].stringValue
-                    pendingRequestViewController.matchInterest = json["interest"].stringValue
-                    self.present(pendingRequestViewController, animated: true, completion: nil)
+                    
+                    matchViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
+                    matchViewController.matchName = json["name"].stringValue
+                    matchViewController.matchInterest = json["interest"].stringValue
+                    
+                    self.present(matchViewController, animated: true, completion: nil)
                 }
             }
         }
@@ -79,6 +82,8 @@ class PendingRequestViewController: UIViewController {
             
             if response.response?.statusCode == 418 {
                 if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+                    
+                    profileViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
                     self.present(profileViewController, animated: true, completion: nil)
                 }
             }

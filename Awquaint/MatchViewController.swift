@@ -10,12 +10,16 @@ import UIKit
 
 class MatchViewController: UIViewController {
     
+    var idPassed = ""
     var matchName = ""
     var matchInterest = ""
 
     @IBOutlet weak var connectionNameLabel: UILabel!
     @IBOutlet weak var connectionInterestLabel: UILabel!
     
+    @IBAction func homeButton(_ sender: Any) {
+        goHome()
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -29,6 +33,12 @@ class MatchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func goHome(){
+        if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+            profileViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
+            self.present(profileViewController, animated: true, completion: nil)
+        }
+    }
 
     /*
     // MARK: - Navigation
