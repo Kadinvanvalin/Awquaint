@@ -56,7 +56,7 @@ class ViewController: UIViewController {
                         viewController.idPassed = json["id"].stringValue
                     
                     
-                        print(json["name"])
+                       print(json["name"])
                        print(json["id"])
                     
                         

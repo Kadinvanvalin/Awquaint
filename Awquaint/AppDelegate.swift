@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+//        configureInitialRootViewController(for: window)
         return true
     }
 
@@ -46,14 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate {
-    func configureInitialRootViewController(for window: UIWindow?) {
-        let defaults = UserDefaults.standard
-        
-        let initialViewController: UIViewController
-        let userId = defaults.object(forKey: "id")
-        if userId != nil {
-            
-        }
-    }
-}
+//extension AppDelegate {
+//    func configureInitialRootViewController(for window: UIWindow?) {
+//        let defaults = UserDefaults.standard
+//
+//        let initialViewController: UIViewController
+//        let userId = defaults.object(forKey: "id")
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        if userId != nil {
+//             let profileView = storyBoard.instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController
+//            self.window?.rootViewController = profileView
+//        }
+//    }
+//}
+

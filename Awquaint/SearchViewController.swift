@@ -11,13 +11,20 @@ import Alamofire
 import SwiftyJSON
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = interestListPassed[indexPath.row]
+        
+        return(cell)
+    }
+    
+   
     var idListPassed: [String]!
     var interestListPassed: [String]!
-    
-//    let list = ["javascript", "pb & j", "la croix"]
-//    let name = ["kadin", "sqiuggles", "hermione"]
+
     var customButton: UIButton!
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         print(interestListPassed!.count)
@@ -25,39 +32,61 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(idListPassed[indexPath.row])
+        var receiverId = idListPassed[indexPath.row]
+        
+        let parameters: Parameters = [
+           "current_user_id": UserDefaults.standard.integer(forKey: "id"),
+           "receiver_id": receiverId
+            ]
+        
+  
+        Alamofire.request("https://awquaint-server.herokuapp.com/invitations", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            // if response.result == SUCCESS
+            if response.response?.statusCode == 201 {
+                let alert = UIAlertController(title: "Invitation sent!", message: "Please wait for a reply.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                print("it created!")
+            }
+            else if response.response?.statusCode == 200 {
+                if let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pendingRequestViewController") as? PendingRequestViewController {
+                    
+                    let json = JSON(response.result.value)
+                    searchViewController.inviterIdPassed = json["pending_sender_id"].stringValue
+                    searchViewController.interestPassed  = json["pending_sender_interest"].stringValue
+                    
+                    self.present(searchViewController, animated: true, completion: nil)
+            } else {
+                // alert user
+                let alert = UIAlertController(title: "Something went wrong", message: "Sorry, someething went wrong! Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = interestListPassed[indexPath.row]
-        
-        //button
-        //        let btn = UIButton(frame: CGRect(x: 100, y: 400, width: 100, height: 50))
-        //        btn.titleLabel?.text = name[indexPath.row]
-        //        cell.contentView.addSubview(btn)
-        //        cell.btn.tag = indexPath.row
-        //        cell.btn.addTarget(self, action: #selector(SearchViewController.printSomething), for: UIControlEvents.touchUpInside)
-        //        btn.backgroundColor = .green()
-        //        btn.setTitle("Click Me", forState: .Normal)
-        //        btn.addTarget(self, action: #selector(MyClass.buttonAction), forControlEvents: .TouchUpInside)
-        //        customButton = btn
-        
-        
-        
-        return(cell)
-    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view.
+//    }
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+//
     
+
+        
+        
+        
+        
+    }
     /*
      // MARK: - Navigation
      // In a storyboard-based application, you will often want to do a little preparation before navigation

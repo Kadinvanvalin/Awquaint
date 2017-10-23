@@ -24,12 +24,12 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameLabel.text = namePassed
         let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(idPassed, forKey: "id")
+            userDefaults.set(idPassed, forKey: "id")
+//        userDefaults.set(namePassed, forKey: "namePassed")
 //        UserDefaults.standard.synchronize()
-    
+        
+        self.nameLabel.text = namePassed
     }
     
 
@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
             let parameters: Parameters = [
                 "latitude": (location.coordinate.latitude),
                 "longitude": (location.coordinate.longitude),
-                "id":idPassed
+                "id": idPassed
             ]
             nearbyRequest(parameters: parameters)
         }
