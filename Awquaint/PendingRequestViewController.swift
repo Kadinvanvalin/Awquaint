@@ -27,6 +27,11 @@ class PendingRequestViewController: UIViewController {
     }
     
 
+    @IBAction func acceptButton(_ sender: Any) {
+        print("here")
+        accept()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +42,7 @@ class PendingRequestViewController: UIViewController {
     func accept(){
         let parameters: Parameters = [
             "sender_id": "1",
-            "current_user_id": "2",
+            "current_user_id": "3",
             "response": "accepted"
         ]
         
@@ -47,10 +52,14 @@ class PendingRequestViewController: UIViewController {
             print("Result: \(response.result)")                         // response serialization result
             
             if response.response?.statusCode == 200 {
-                let json = JSON(response.result.value)
+                if let pendingRequestViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "matchViewController") as? MatchViewController {
+                    let json = JSON(response.result.value)
+                    pendingRequestViewController.matchName = json["name"].stringValue
+                    pendingRequestViewController.matchInterest = json["interest"].stringValue
+                    self.present(pendingRequestViewController, animated: true, completion: nil)
                 print(json)
+                }
             }
         }
     }
-
 }

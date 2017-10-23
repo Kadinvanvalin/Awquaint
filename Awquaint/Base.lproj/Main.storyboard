@@ -222,6 +222,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Accept"/>
+                                <connections>
+                                    <action selector="acceptButton:" destination="i0n-8z-nod" eventType="touchUpInside" id="8rm-Xm-myh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Someone nearby interested in:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6x-n0-5u3">
                                 <rect key="frame" x="59" y="226" width="257" height="16"/>
@@ -277,10 +280,10 @@
             </objects>
             <point key="canvasLocation" x="1944.8" y="92.203898050974516"/>
         </scene>
-        <!--View Controller-->
+        <!--Match View Controller-->
         <scene sceneID="86Q-4f-d8d">
             <objects>
-                <viewController id="nhX-ou-wi9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="matchViewController" id="nhX-ou-wi9" customClass="MatchViewController" customModule="Awquaint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c7g-h8-pVz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
