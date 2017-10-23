@@ -11,7 +11,7 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class ProfileViewController: UIViewController, CLLocationManagerDelegate {
+class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     let locationManager = CLLocationManager()
@@ -32,7 +32,48 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
     
     }
     
-
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = selectedPhoto
+        dismiss(animated: true, completion: nil)
+      
+//        let parameters: Parameters = [
+//            "id": idPassed,
+//            "image": selectedPhoto
+//        ]
+//
+//        Alamofire.request("https://awquaint-server.herokuapp.com/users/profile", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+//            print("Request: \(String(describing: response.request))")   // original url request
+//            print("Response: \(String(describing: response.response))") // http url response
+//            print("Result: \(response.result)")
+//
+//            if response.response?.statusCode == 200 {
+//                print("photo saved")
+//            }
+//            else
+//            {
+//                let alert = UIAlertController(title: "Sorry, couldn't save photo.", message: "Please try saving your photo again.", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//
+//        }
+    }
+   
+    @IBAction func selectImage(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func getAwquaintedButton(_ sender: Any) {
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
