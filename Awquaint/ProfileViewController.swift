@@ -41,6 +41,36 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
         let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
         profileImage.image = selectedPhoto
         dismiss(animated: true, completion: nil)
+        
+        let image = profileImage.image
+        
+        let imgData = UIImageJPEGRepresentation(image!, 0.2)!
+        
+        let parameters = ["id": idPassed]
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "image",fileName: "profile.jpg", mimeType: "image/jpg")
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            }
+        },
+                         to:"https://awquaint-server.herokuapp.com/users/profile")
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    print("Upload Progress: \(progress.fractionCompleted)")
+                })
+                
+                upload.responseJSON { response in
+                    print(response.result.value)
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        }
     }
     
     @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
