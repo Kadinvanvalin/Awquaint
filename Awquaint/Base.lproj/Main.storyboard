@@ -348,24 +348,23 @@
                                     <action selector="homeButton:" destination="nhX-ou-wi9" eventType="touchUpInside" id="zKq-Qq-E6n"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="kU0-30-3sP">
-                                <rect key="frame" x="112" y="255" width="150" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="6Ww-Af-UX9">
+                                <rect key="frame" x="100" y="269" width="174" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pFC-xq-YsA" firstAttribute="trailing" secondItem="2qz-ss-Kup" secondAttribute="trailing" constant="106" id="2sj-UK-TE0"/>
-                            <constraint firstItem="pFC-xq-YsA" firstAttribute="trailing" secondItem="kU0-30-3sP" secondAttribute="trailing" constant="113" id="Cj3-6a-bu5"/>
                             <constraint firstItem="pFC-xq-YsA" firstAttribute="bottom" secondItem="12d-DI-qoL" secondAttribute="bottom" constant="54" id="F3h-yh-akU"/>
                             <constraint firstItem="2qz-ss-Kup" firstAttribute="leading" secondItem="pFC-xq-YsA" secondAttribute="leading" constant="106" id="HyA-oi-s5f"/>
-                            <constraint firstItem="kU0-30-3sP" firstAttribute="leading" secondItem="pFC-xq-YsA" secondAttribute="leading" constant="112" id="PYn-gF-Uub"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pFC-xq-YsA"/>
                     </view>
                     <connections>
                         <outlet property="connectionInterestLabel" destination="2qz-ss-Kup" id="nul-N9-Mzl"/>
                         <outlet property="connectionNameLabel" destination="KRE-ha-qek" id="jCY-gZ-aAC"/>
-                        <outlet property="profileImage" destination="kU0-30-3sP" id="quU-7Y-Pd6"/>
+                        <outlet property="profileImage" destination="6Ww-Af-UX9" id="kOK-sx-SdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcR-17-Gjg" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -22,6 +22,7 @@ class MatchViewController: UIViewController {
     @IBOutlet weak var connectionInterestLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    
     @IBAction func homeButton(_ sender: Any) {
         goHome()
     }
