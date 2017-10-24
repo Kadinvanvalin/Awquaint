@@ -11,9 +11,8 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class ProfileViewController: UIViewController, CLLocationManagerDelegate {
-    
-    
+class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -32,20 +31,38 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
         self.nameLabel.text = namePassed
     }
     
-
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = selectedPhoto
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     @IBAction func getAwquaintedButton(_ sender: Any) {
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
             
         }
     }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]){
-        print("did update location")
+        print("did update ?")
         if let location = locations.first {
             let parameters: Parameters = [
                 "latitude": (location.coordinate.latitude),
@@ -58,7 +75,13 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("yeah something bad happened")
+    }
+    
+    
     func nearbyRequest (parameters: Parameters)  {
+        URLCache.shared.removeAllCachedResponses()
         Alamofire.request("https://awquaint-server.herokuapp.com/users/search", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response

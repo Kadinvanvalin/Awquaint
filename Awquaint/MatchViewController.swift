@@ -7,25 +7,44 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class MatchViewController: UIViewController {
     
     var idPassed = ""
     var matchName = ""
     var matchInterest = ""
-
+    var matchImageUrl = ""
+    
+    
     @IBOutlet weak var connectionNameLabel: UILabel!
     @IBOutlet weak var connectionInterestLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
     @IBAction func homeButton(_ sender: Any) {
         goHome()
     }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.connectionNameLabel.text = matchName
         self.connectionInterestLabel.text = matchInterest
         // Do any additional setup after loading the view.
+        
+        Alamofire.request(matchImageUrl).responseImage { response in
+            debugPrint(response)
+            
+            print(response.request)
+            print(response.response)
+            debugPrint(response.result)
+            
+            if let image = response.result.value {
+                self.profileImage.image = image
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

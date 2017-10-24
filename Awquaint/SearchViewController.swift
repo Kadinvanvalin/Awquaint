@@ -102,7 +102,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("pending invite")
                     if let pendingRequestViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pendingRequestViewController") as? PendingRequestViewController {
                         let json = JSON(response.result.value)
-                        
+
                         pendingRequestViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
                         pendingRequestViewController.inviterIdPassed = json["pending_sender_id"].stringValue
                         pendingRequestViewController.interestPassed = json["pending_sender_interest"].stringValue

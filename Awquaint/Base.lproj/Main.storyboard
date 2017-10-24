@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-Tq-Hsk">
-                                <rect key="frame" x="90" y="92" width="195" height="30"/>
+                                <rect key="frame" x="90" y="359" width="195" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login">
@@ -94,9 +94,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="JEV-Oy-Oam">
-                                <rect key="frame" x="112" y="135" width="150" height="150"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogv-xs-bjd">
                                 <rect key="frame" x="112" y="346" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,21 +128,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="zd6-eQ-Wvs">
+                                <rect key="frame" x="97" y="133" width="181" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qSl-St-KdZ" appends="YES" id="2q6-R0-2jP"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8UK-pc-o2o" firstAttribute="trailing" secondItem="JEV-Oy-Oam" secondAttribute="trailing" constant="125" id="53i-3U-iu5"/>
-                            <constraint firstItem="JEV-Oy-Oam" firstAttribute="leading" secondItem="8UK-pc-o2o" secondAttribute="leading" constant="125" id="AxH-Ld-gLs"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8UK-pc-o2o"/>
                     </view>
                     <connections>
                         <outlet property="nameLabel" destination="QXu-BT-RYM" id="QYk-Zb-eaq"/>
+                        <outlet property="profileImage" destination="zd6-eQ-Wvs" id="0c2-l0-uDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzM-1a-sB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qSl-St-KdZ">
+                    <connections>
+                        <action selector="selectImage:" destination="czM-er-589" id="fK4-Ox-Qfp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="433" y="95"/>
+            <point key="canvasLocation" x="432.80000000000001" y="94.902548725637189"/>
         </scene>
         <!--SearchViewController-->
         <scene sceneID="lIu-5z-sAF">
@@ -312,9 +319,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="connectionInterest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qz-ss-Kup">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="connectionInterest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qz-ss-Kup">
                                 <rect key="frame" x="106" y="477" width="163" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -334,26 +340,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12d-DI-qoL">
-                                <rect key="frame" x="160" y="577" width="55" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12d-DI-qoL">
+                                <rect key="frame" x="160" y="580" width="55" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Home"/>
                                 <connections>
                                     <action selector="homeButton:" destination="nhX-ou-wi9" eventType="touchUpInside" id="zKq-Qq-E6n"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="kU0-30-3sP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="kU0-30-3sP">
                                 <rect key="frame" x="112" y="255" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pFC-xq-YsA" firstAttribute="trailing" secondItem="2qz-ss-Kup" secondAttribute="trailing" constant="106" id="2sj-UK-TE0"/>
+                            <constraint firstItem="pFC-xq-YsA" firstAttribute="trailing" secondItem="kU0-30-3sP" secondAttribute="trailing" constant="113" id="Cj3-6a-bu5"/>
+                            <constraint firstItem="pFC-xq-YsA" firstAttribute="bottom" secondItem="12d-DI-qoL" secondAttribute="bottom" constant="54" id="F3h-yh-akU"/>
+                            <constraint firstItem="2qz-ss-Kup" firstAttribute="leading" secondItem="pFC-xq-YsA" secondAttribute="leading" constant="106" id="HyA-oi-s5f"/>
+                            <constraint firstItem="kU0-30-3sP" firstAttribute="leading" secondItem="pFC-xq-YsA" secondAttribute="leading" constant="112" id="PYn-gF-Uub"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pFC-xq-YsA"/>
                     </view>
                     <connections>
                         <outlet property="connectionInterestLabel" destination="2qz-ss-Kup" id="nul-N9-Mzl"/>
                         <outlet property="connectionNameLabel" destination="KRE-ha-qek" id="jCY-gZ-aAC"/>
+                        <outlet property="profileImage" destination="kU0-30-3sP" id="quU-7Y-Pd6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcR-17-Gjg" userLabel="First Responder" sceneMemberID="firstResponder"/>
