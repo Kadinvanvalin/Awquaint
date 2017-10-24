@@ -6,9 +6,33 @@ target 'Awquaint' do
   use_frameworks!
 
   # Pods for Awquaint
-
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'SwiftyJSON'
+  pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireImage', '~> 3.3'
+  
+#  pod 'AWSAutoScaling'
+#  pod 'AWSCloudWatch'
+#  pod 'AWSCognito'
+#  pod 'AWSCognitoIdentityProvider'
+#  pod 'AWSDynamoDB'
+#  pod 'AWSEC2'
+#  pod 'AWSElasticLoadBalancing'
+#  pod 'AWSIoT'
+#  pod 'AWSKinesis'
+#  pod 'AWSLambda'
+#  pod 'AWSLex'
+#  pod 'AWSMachineLearning'
+#  pod 'AWSMobileAnalytics'
+#  pod 'AWSPinpoint'
+#  pod 'AWSPolly'
+#  pod 'AWSRekognition'
+#  pod 'AWSS3'
+#  pod 'AWSSES'
+#  pod 'AWSSimpleDB'
+#  pod 'AWSSNS'
+#  pod 'AWSSQS'
+#  pod 'Quick/Nimble'
+#  pod 'Quick/Quick'
 
   target 'AwquaintTests' do
     inherit! :search_paths
