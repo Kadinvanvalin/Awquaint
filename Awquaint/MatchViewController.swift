@@ -40,9 +40,11 @@ class MatchViewController: UIViewController {
             print(response.request)
             print(response.response)
             debugPrint(response.result)
+            print("hello")
             
             if let image = response.result.value {
                 self.profileImage.image = image
+                print("image pulled from database")
             }
         }
         

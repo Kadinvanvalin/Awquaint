@@ -95,6 +95,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         matchViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
                         matchViewController.matchName = json["name"].stringValue
                         matchViewController.matchInterest = json["interest"].stringValue
+                        matchViewController.matchImageUrl = json["image"].stringValue
+                        
                         self.present(matchViewController, animated: true, completion: nil)
                     }
                 }

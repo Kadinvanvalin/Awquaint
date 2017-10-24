@@ -63,6 +63,7 @@ class PendingRequestViewController: UIViewController {
                     matchViewController.matchImageUrl = json["image"].stringValue
                     
                     print(matchViewController.matchImageUrl)
+                    print("grabbing url from database")
                     
                     self.present(matchViewController, animated: true, completion: nil)
                 }

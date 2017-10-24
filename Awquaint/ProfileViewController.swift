@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
     var namePassed = ""
     var idPassed = ""
    
+    @IBOutlet weak var profileImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,11 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
 //        UserDefaults.standard.synchronize()
         
         self.nameLabel.text = namePassed
+        let data = UserDefaults.standard.object(forKey: "userImage") as? NSData
+        if data != nil {
+            self.profileImage.image = UIImage(data: data as! Data)
+        }
     }
-    
-    @IBOutlet weak var profileImage: UIImageView!
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -45,6 +48,9 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
         let image = profileImage.image
         
         let imgData = UIImageJPEGRepresentation(image!, 0.2)!
+        
+        let userImage:NSData = UIImagePNGRepresentation(image!)! as NSData
+        UserDefaults.standard.set(userImage, forKey: "userImage")
         
         let parameters = ["id": idPassed]
         
