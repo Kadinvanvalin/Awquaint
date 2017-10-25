@@ -9,6 +9,7 @@ target 'Awquaint' do
   pod 'SwiftyJSON'
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireImage', '~> 3.3'
+  pod 'SideMenu'
   
 #  pod 'AWSAutoScaling'
 #  pod 'AWSCloudWatch'

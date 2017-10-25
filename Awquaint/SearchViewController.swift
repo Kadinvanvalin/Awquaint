@@ -23,7 +23,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var interestListPassed: [String]!
 
     var customButton: UIButton!
-
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(interestListPassed!.count)
         return(interestListPassed!.count)
@@ -74,6 +74,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Do any additional setup after loading the view.
         }
     
+    @IBAction func homeButton(_ sender: Any) {
+        goHome()
+    }
+    
+    func goHome(){
+        if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+            profileViewController.idPassed = UserDefaults.standard.string(forKey: "id")!
+            self.present(profileViewController, animated: true, completion: nil)
+        }
+    }
     @IBAction func checkInvitesButton(_ sender: Any) {
         invitationStatus()
     }

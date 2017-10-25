@@ -13,31 +13,34 @@ import SwiftyJSON
 class ViewController: UIViewController, UITextFieldDelegate {
 
     //outlets
-    @IBOutlet weak var name: UITextField!
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var interest: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.name.delegate = self
+       
         self.email.delegate = self
         self.password.delegate = self
-        self.interest.delegate = self
     }
+    
     
     // hide keyboard when users touches outside keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    @IBAction func menuButton(_ sender: UIBarButtonItem) {
+    //show menu?
+    }
+    
     // when user presses return key, keyboard hides
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        name.resignFirstResponder()
+        
         email.resignFirstResponder()
         password.resignFirstResponder()
-        interest.resignFirstResponder()
+        
         return true
     }
     
@@ -78,7 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                         
                     self.present(viewController, animated: true, completion: nil)
-                }
+                } 
             } else {
                 // alert user
                 let alert = UIAlertController(title: "Incorrect password", message: "Incorrect password", preferredStyle: .alert)
@@ -89,35 +92,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func signUp(){
-        let parameters: Parameters = [
-            "user":[
-                "name": name.text,
-                "email": email.text,
-                "password": password.text,
-                "interest": interest.text
-            ]
-        ]
-        
-        Alamofire.request("https://awquaint-server.herokuapp.com/users", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
-            
-            // if response.result == SUCCESS
-            if response.response?.statusCode == 200 {
-                 // move to next view
-                if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
-                    self.present(viewController, animated: true, completion: nil)
-                }
-            } else {
-                // alert user
-                let alert = UIAlertController(title: "incorrect password", message: "Incorrect password", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-           
+        if let signUpViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpViewController") as? SignUpViewController {
+            self.present(signUpViewController, animated: true, completion: nil)
         }
     }
-
 }
 

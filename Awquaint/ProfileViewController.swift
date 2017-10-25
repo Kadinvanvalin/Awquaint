@@ -24,16 +24,21 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userDefaults = UserDefaults.standard
-            userDefaults.set(idPassed, forKey: "id")
-//        userDefaults.set(namePassed, forKey: "namePassed")
-//        UserDefaults.standard.synchronize()
-        
-        self.nameLabel.text = namePassed
+        let userId = UserDefaults.standard.object(forKey: "id")
+        let userName = UserDefaults.standard.string(forKey: "name")
         let data = UserDefaults.standard.object(forKey: "userImage") as? NSData
+        if userId == nil {
+            UserDefaults.standard.set(idPassed, forKey: "id")
+        }
+        if userName == nil {
+            UserDefaults.standard.set(namePassed, forKey: "name")
+        }
+        let updatedName = UserDefaults.standard.string(forKey: "name")
+
         if data != nil {
             self.profileImage.image = UIImage(data: data as! Data)
         }
+        self.nameLabel.text = updatedName
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -103,7 +108,7 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
             let parameters: Parameters = [
                 "latitude": (location.coordinate.latitude),
                 "longitude": (location.coordinate.longitude),
-                "id": idPassed
+                "id": UserDefaults.standard.object(forKey: "id")
             ]
             nearbyRequest(parameters: parameters)
         
