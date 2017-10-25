@@ -101,6 +101,41 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
         }
     }
     
+    @IBOutlet weak var interestLabel: UILabel!
+    @IBAction func editInterestButton(_ sender: Any) {
+        showInputDialog()
+    }
+    
+    func showInputDialog() {
+        let alertController = UIAlertController(title: "Update Interests", message: "Please enter your interests", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Save", style: .default) { (_) in
+            let interest = alertController.textFields?[0].text
+            self.interestLabel.text = "Interest:" + interest!
+            self.updateInterest(interest: interest!)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter interest"
+        }
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func updateInterest(interest: String) {
+        let parameters: Parameters = [
+            "id": UserDefaults.standard.object(forKey: "id"),
+            "interest": interest
+        ]
+        
+        Alamofire.request("https://awquaint-server.herokuapp.com/users/interest", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            
+            if response.response?.statusCode == 200 {
+                print("success")
+            }
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]){
         print("did update ?")
@@ -124,9 +159,6 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
     func nearbyRequest (parameters: Parameters)  {
         URLCache.shared.removeAllCachedResponses()
         Alamofire.request("https://awquaint-server.herokuapp.com/users/search", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")
         
             if response.response?.statusCode == 200 {
                 if let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchViewController") as? SearchViewController {
