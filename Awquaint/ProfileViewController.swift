@@ -13,15 +13,17 @@ import SwiftyJSON
 
 class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let locationManager = CLLocationManager()
+//   let locationManager = CLLocationManager()
     
     @IBOutlet weak var nameLabel: UILabel!
     
     var namePassed = ""
     var idPassed = ""
+    var interestPassed = ""
    
     @IBOutlet weak var profileImage: UIImageView!
-    
+    @IBOutlet weak var interestLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let userId = UserDefaults.standard.object(forKey: "id")
@@ -38,9 +40,11 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
         if data != nil {
             self.profileImage.image = UIImage(data: data as! Data)
         }
+        print(UserDefaults.standard.string(forKey: "interest"))
+        // set the labels
         self.nameLabel.text = updatedName
+        self.interestLabel.text = UserDefaults.standard.string(forKey: "interest")
     }
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -92,16 +96,12 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
     }
     
     @IBAction func getAwquaintedButton(_ sender: Any) {
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestLocation()
+        if let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchViewController") as? SearchViewController {
             
+            self.present(searchViewController, animated: true, completion: nil)
         }
     }
-    
-    @IBOutlet weak var interestLabel: UILabel!
+
     @IBAction func editInterestButton(_ sender: Any) {
         showInputDialog()
     }
@@ -110,7 +110,8 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
         let alertController = UIAlertController(title: "Update Interests", message: "Please enter your interests", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Save", style: .default) { (_) in
             let interest = alertController.textFields?[0].text
-            self.interestLabel.text = "Interest:" + interest!
+            self.interestLabel.text = interest!
+            UserDefaults.standard.set(interest, forKey: "interest")
             self.updateInterest(interest: interest!)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -133,61 +134,6 @@ class ProfileViewController: UIViewController, CLLocationManagerDelegate, UIImag
             
             if response.response?.statusCode == 200 {
                 print("success")
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]){
-        print("did update ?")
-        if let location = locations.first {
-            let parameters: Parameters = [
-                "latitude": (location.coordinate.latitude),
-                "longitude": (location.coordinate.longitude),
-                "id": UserDefaults.standard.object(forKey: "id")
-            ]
-            nearbyRequest(parameters: parameters)
-        
-        }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("yeah something bad happened")
-    }
-    
-    
-    func nearbyRequest (parameters: Parameters)  {
-        URLCache.shared.removeAllCachedResponses()
-        Alamofire.request("https://awquaint-server.herokuapp.com/users/search", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-        
-            if response.response?.statusCode == 200 {
-                if let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchViewController") as? SearchViewController {
-                    
-                    let usersJson = JSON(response.result.value)
-                        print(usersJson)
-                    var idList = [String]()
-                    var interestList = [String]()
-                        if usersJson.count > 0 {
-                        for i in 0...(usersJson.count - 1) {
-                            if let id = usersJson[i]["id"].string {
-                                idList.append(id)
-                            }
-                        }
-                        
-                        for i in 0...(usersJson.count - 1) {
-                            if let interest = (usersJson[i]["interest"]).string {
-                                interestList.append(interest)
-                            }
-                        }
-                    }
-                    print(type(of:idList))
-                    print(type(of:interestList))
-                    
-                
-                    searchViewController.idListPassed = idList
-                    searchViewController.interestListPassed = interestList
-                    self.present(searchViewController, animated: true, completion: nil)
-                }
             }
         }
     }

@@ -67,15 +67,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         ]
         
         Alamofire.request("https://awquaint-server.herokuapp.com/users", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
             
             // if response.result == SUCCESS
             if response.response?.statusCode == 200 {
                 // move to next view
-                if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
-                    self.present(viewController, animated: true, completion: nil)
+                if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {
+                    
+                    profileViewController.namePassed = self.name.text!
+                    profileViewController.interestPassed = self.interest.text!
+                
+                    let setInterest = UserDefaults.standard.string(forKey: "interest")
+                    if setInterest == nil {
+                        UserDefaults.standard.set(profileViewController.interestPassed, forKey: "interest")
+                    }
+                    
+                    self.present(profileViewController, animated: true, completion: nil)
                 }
             } else {
                 // alert user

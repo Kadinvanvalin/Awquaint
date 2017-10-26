@@ -19,6 +19,7 @@ class MatchViewController: UIViewController {
     
     
     @IBOutlet weak var connectionNameLabel: UILabel!
+    
     @IBOutlet weak var connectionInterestLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -28,23 +29,16 @@ class MatchViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.connectionNameLabel.text = matchName
         self.connectionInterestLabel.text = matchInterest
-        // Do any additional setup after loading the view.
-        
         Alamofire.request(matchImageUrl).responseImage { response in
             debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
+
             debugPrint(response.result)
-            print("hello")
             
             if let image = response.result.value {
                 self.profileImage.image = image
-                print("image pulled from database")
             }
         }
         
