@@ -13,12 +13,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var storyboard: UIStoryboard?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application launch
         
-//        configureInitialRootViewController(for: window)
+        self.storyboard =  UIStoryboard(name: "Main", bundle: nil)
+        
+        let currentUser = UserDefaults.standard.object(forKey: "id")
+        if currentUser != nil
+        {
+            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController")
+        }
+        else
+        {
+            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "viewController")
+        }
         return true
     }
 
@@ -43,21 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
-//extension AppDelegate {
-//    func configureInitialRootViewController(for window: UIWindow?) {
-//        let defaults = UserDefaults.standard
-//
-//        let initialViewController: UIViewController
-//        let userId = defaults.object(forKey: "id")
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        if userId != nil {
-//             let profileView = storyBoard.instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController
-//            self.window?.rootViewController = profileView
-//        }
-//    }
-//}
 

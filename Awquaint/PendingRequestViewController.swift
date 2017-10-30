@@ -49,9 +49,6 @@ class PendingRequestViewController: UIViewController {
         ]
         
         Alamofire.request("https://awquaint-server.herokuapp.com/invitations/response", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
             
             if response.response?.statusCode == 200 {
                 if let matchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "matchViewController") as? MatchViewController {
@@ -62,7 +59,6 @@ class PendingRequestViewController: UIViewController {
                     matchViewController.matchInterest = json["interest"].stringValue
                     matchViewController.matchImageUrl = json["image"].stringValue
                     
-                    print(matchViewController.matchImageUrl)
                     
                     self.present(matchViewController, animated: true, completion: nil)
                 }
@@ -78,9 +74,6 @@ class PendingRequestViewController: UIViewController {
         ]
         
         Alamofire.request("https://awquaint-server.herokuapp.com/invitations/response", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
             
             if response.response?.statusCode == 418 {
                 if let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController") as? ProfileViewController {

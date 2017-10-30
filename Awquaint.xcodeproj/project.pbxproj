@@ -11,6 +11,7 @@
 		0939114C1F9C18D200EF7969 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0939114B1F9C18D200EF7969 /* SearchViewController.swift */; };
 		093911521F9D66F300EF7969 /* PendingRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093911511F9D66F300EF7969 /* PendingRequestViewController.swift */; };
 		093911541F9D7C4000EF7969 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093911531F9D7C4000EF7969 /* MatchViewController.swift */; };
+		094E9FF11F9FB7E900B09343 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094E9FF01F9FB7E900B09343 /* SignUpViewController.swift */; };
 		09DFAB311F9A325D00E1A807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB301F9A325D00E1A807 /* AppDelegate.swift */; };
 		09DFAB331F9A325D00E1A807 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB321F9A325D00E1A807 /* ViewController.swift */; };
 		09DFAB361F9A325D00E1A807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09DFAB341F9A325D00E1A807 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		09DFAB461F9A325D00E1A807 /* AwquaintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB451F9A325D00E1A807 /* AwquaintTests.swift */; };
 		09DFAB511F9A325D00E1A807 /* AwquaintUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DFAB501F9A325D00E1A807 /* AwquaintUITests.swift */; };
 		09DFAB5F1F9A342B00E1A807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09DFAB5E1F9A342B00E1A807 /* GoogleService-Info.plist */; };
+		09E216651FA117A600AC82FA /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E216641FA117A600AC82FA /* RoundButton.swift */; };
 		2313353EDF3D1A9348DE718B /* Pods_Awquaint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8D1FEB74041527C89FF48D /* Pods_Awquaint.framework */; };
 		38940A14F138F0EFFC3579C6 /* Pods_AwquaintUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04565A79E3F512BB9766E80 /* Pods_AwquaintUITests.framework */; };
 		569FFD29C6492B377B048A4A /* Pods_AwquaintTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81D94BD6F182A8BFE3FE67A /* Pods_AwquaintTests.framework */; };
@@ -46,6 +48,7 @@
 		0939114B1F9C18D200EF7969 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		093911511F9D66F300EF7969 /* PendingRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestViewController.swift; sourceTree = "<group>"; };
 		093911531F9D7C4000EF7969 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		094E9FF01F9FB7E900B09343 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		09DFAB2D1F9A325D00E1A807 /* Awquaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awquaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09DFAB301F9A325D00E1A807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09DFAB321F9A325D00E1A807 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		09DFAB501F9A325D00E1A807 /* AwquaintUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwquaintUITests.swift; sourceTree = "<group>"; };
 		09DFAB521F9A325D00E1A807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09DFAB5E1F9A342B00E1A807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09E216641FA117A600AC82FA /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		161BD96D39397A14EFB7D7CF /* Pods-AwquaintUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwquaintUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwquaintUITests/Pods-AwquaintUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67CA83FABC543DA4D29C9E8F /* Pods-Awquaint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awquaint.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Awquaint/Pods-Awquaint.debug.xcconfig"; sourceTree = "<group>"; };
 		6A5EA841D2C1773A1A72420C /* Pods-AwquaintTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwquaintTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwquaintTests/Pods-AwquaintTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				0939114B1F9C18D200EF7969 /* SearchViewController.swift */,
 				093911511F9D66F300EF7969 /* PendingRequestViewController.swift */,
 				093911531F9D7C4000EF7969 /* MatchViewController.swift */,
+				094E9FF01F9FB7E900B09343 /* SignUpViewController.swift */,
+				09E216641FA117A600AC82FA /* RoundButton.swift */,
 			);
 			path = Awquaint;
 			sourceTree = "<group>";
@@ -478,7 +484,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E216651FA117A600AC82FA /* RoundButton.swift in Sources */,
 				093911541F9D7C4000EF7969 /* MatchViewController.swift in Sources */,
+				094E9FF11F9FB7E900B09343 /* SignUpViewController.swift in Sources */,
 				0929D9F01F9BB5B100CF6ECC /* ProfileViewController.swift in Sources */,
 				09DFAB331F9A325D00E1A807 /* ViewController.swift in Sources */,
 				0939114C1F9C18D200EF7969 /* SearchViewController.swift in Sources */,
